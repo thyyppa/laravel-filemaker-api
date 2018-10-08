@@ -1,0 +1,33 @@
+{
+    "name": "thyyppa/laravel-filemaker-api",
+    "type": "library",
+    "description": "Send and retrieve Eloquent models using Filemaker Server Data API",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Travis Hyyppä",
+            "email": "travishyyppa@gmail.com"
+        }
+    ],
+    "require": {
+        "php":      "^7.1.3",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hyyppa\\Filemaker\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel":      {
+            "providers": [
+                "Hyyppa\\Filemaker\\Providers\\FilemakerServiceProvider"
+            ],
+            "aliases":   {
+                "Filemaker": "Hyyppa\\Filemaker\\Facade\\FilemakerFacade"
+            }
+        }
+    }
+}
