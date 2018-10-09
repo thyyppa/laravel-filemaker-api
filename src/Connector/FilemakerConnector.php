@@ -65,7 +65,7 @@ abstract class FilemakerConnector
         $this->log = new FilemakerLog();
 
         $this->initCurl();
-        $this->getToken();
+        $this->fetchNewToken();
     }
 
 
@@ -148,10 +148,7 @@ abstract class FilemakerConnector
      */
     protected function getToken() : string
     {
-        return $this->config->token ?? $this->config->setToken(
-                $this->postRequest( 'sessions' )
-                     ->dot( 'response.token' )
-            );
+        return $this->config->token ?? $this->fetchNewToken();
     }
 
 
@@ -328,6 +325,13 @@ abstract class FilemakerConnector
             $this->check( $response );
         }
         catch( FilemakerException $e ) {
+
+            if( $e->getCode() === 952 ) {
+                $this->fetchNewToken();
+
+                return $this->sendRequest( $path, $method, $payload, $query_string );
+            }
+
             if( \in_array( $e->getCode(), [
                 FILEMAKER_RECORD_MISSING,
                 FILEMAKER_NO_MATCH,
@@ -339,6 +343,21 @@ abstract class FilemakerConnector
         }
 
         return $response;
+    }
+
+
+    /**
+     * @throws FilemakerException
+     */
+    protected function fetchNewToken() : string
+    {
+        $this->config->token = null;
+
+        $token = $this->postRequest( 'sessions' )->dot( 'response.token' );
+
+        $this->config->setToken( $token );
+
+        return $this->config->token;
     }
 
 }
