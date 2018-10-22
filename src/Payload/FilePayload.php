@@ -11,10 +11,14 @@ class FilePayload extends Payload
      */
     public function __construct( string $filename, $data = null )
     {
+        if( file_exists( $filename ) ) {
+            $data = file_get_contents( $filename );
+        }
+
         parent::__construct( [
             'source'   => $filename,
             'filename' => basename( $filename ),
-            'data'     => $data ?? file_get_contents( $filename ),
+            'data'     => $data ?? '',
         ] );
     }
 
