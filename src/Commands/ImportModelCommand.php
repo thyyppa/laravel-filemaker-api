@@ -17,7 +17,7 @@ use Hyyppa\Filemaker\{
 class ImportModelCommand extends Command
 {
 
-    public $signature = 'model:import {model} {--all}';
+    public $signature = 'model:import {model} {--all} {--last=500}';
 
     public $description = 'Import Eloquent model to Filemaker';
 
@@ -117,6 +117,10 @@ class ImportModelCommand extends Command
 
         if( $latest === null || $this->option( 'all' ) ) {
             return with( new $this->model )->all();
+        }
+
+        if( $latest === null || $this->option( 'last' ) ) {
+            return with( new $this->model )->orderBy( 'created_at', 'desc' )->limit( $this->option( 'last' ) )->get();
         }
 
         /** @var Collection $needsUpdate */
