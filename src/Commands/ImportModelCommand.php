@@ -17,7 +17,7 @@ use Hyyppa\Filemaker\{
 class ImportModelCommand extends Command
 {
 
-    public $signature = 'model:import {model} {--all} {--last=500}';
+    public $signature = 'model:import {model} {--all} {--last=}';
 
     public $description = 'Import Eloquent model to Filemaker';
 
