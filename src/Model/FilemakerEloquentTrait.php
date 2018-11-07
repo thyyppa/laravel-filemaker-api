@@ -199,8 +199,11 @@ trait FilemakerEloquentTrait
         $dates        = $this->getDates();
 
         foreach( $dates as $date ) {
-            if( isset( $this->$date ) && ! empty( $this->$date ) && $this->$date->timestamp > 0 ) {
-                $attributes[ $date ] = ( new Carbon( $this->$date ) )->format( 'm/d/Y H:i:s' );
+            if( isset( $this->$date ) && ! empty( $this->$date ) ) {
+                $carbon = new Carbon( $this->$date );
+                if( $carbon->timestamp !== 0 ) {
+                    $attributes[ $date ] = $carbon->format( 'm/d/Y H:i:s' );
+                }
             } else {
                 $attributes[ $date ] = null;
             }
