@@ -1,29 +1,27 @@
-<?php namespace Hyyppa\Filemaker\Contracts;
+<?php
+
+namespace Hyyppa\Filemaker\Contracts;
 
 use Hyyppa\Filemaker\Record\Record;
 
 interface CacheInterface
 {
-
     /**
      * @param string|Record $record
      *
      * @return Record|null
      */
-    public function add( $record ) : ?Record;
-
-
-    /**
-     * @param Record $record
-     */
-    public function update( Record $record ) : void;
-
+    public function add($record): ?Record;
 
     /**
      * @param Record $record
      */
-    public function remove( Record $record ) : void;
+    public function update(Record $record): void;
 
+    /**
+     * @param Record $record
+     */
+    public function remove(Record $record): void;
 
     /**
      * @param string|FilemakerModel $model
@@ -31,8 +29,7 @@ interface CacheInterface
      *
      * @return Record|null
      */
-    public function get( $model, $id ) : ?Record;
-
+    public function get($model, $id): ?Record;
 
     /**
      * @param $table
@@ -40,5 +37,5 @@ interface CacheInterface
      *
      * @return bool
      */
-    public function has( $table, $id ) : bool;
+    public function has($table, $id): bool;
 }

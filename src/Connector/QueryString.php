@@ -1,11 +1,12 @@
-<?php namespace Hyyppa\Filemaker\Connector;
+<?php
 
-use Illuminate\Support\Collection;
+namespace Hyyppa\Filemaker\Connector;
+
 use Hyyppa\Filemaker\Contracts\QueryStringInterface;
+use Illuminate\Support\Collection;
 
 class QueryString extends Collection implements QueryStringInterface
 {
-
     /**
      * @var array
      */
@@ -21,83 +22,77 @@ class QueryString extends Collection implements QueryStringInterface
      */
     protected $offset = null;
 
-
     /**
      * @return string
      */
-    public function queryString() : string
+    public function queryString(): string
     {
         $query = [];
 
-        $this->map( function ( $value, $key ) {
-            return '_' . $key . '=' . $value;
-        } );
+        $this->map(function ($value, $key) {
+            return '_'.$key.'='.$value;
+        });
 
-        if( $this->offset !== null ) {
-            $query[] = '_offset=' . $this->offset;
+        if ($this->offset !== null) {
+            $query[] = '_offset='.$this->offset;
         }
 
-        if( $this->limit !== null ) {
-            $query[] = '_limit=' . $this->limit;
+        if ($this->limit !== null) {
+            $query[] = '_limit='.$this->limit;
         }
 
-        if( $this->sort !== null ) {
-            $query[] = '_sort=' . json_encode( $this->sort );
+        if ($this->sort !== null) {
+            $query[] = '_sort='.json_encode($this->sort);
         }
 
-        return '?' . implode( '&', $query );
+        return '?'.implode('&', $query);
     }
-
 
     /**
      * @param $field
      *
      * @return $this
      */
-    public function sortAscending( $field ) : QueryStringInterface
+    public function sortAscending($field): QueryStringInterface
     {
-        $this->sort[] = [ 'fieldName' => $field, 'sortOrder' => 'ascend' ];
+        $this->sort[] = ['fieldName' => $field, 'sortOrder' => 'ascend'];
 
         return $this;
     }
-
 
     /**
      * @param $field
      *
      * @return $this
      */
-    public function sortDescending( $field ) : QueryStringInterface
+    public function sortDescending($field): QueryStringInterface
     {
-        $this->sort[] = [ 'fieldName' => $field, 'sortOrder' => 'descend' ];
+        $this->sort[] = ['fieldName' => $field, 'sortOrder' => 'descend'];
 
         return $this;
     }
-
 
     /**
      * @param int $limit
      *
      * @return $this
      */
-    public function limit( int $limit ) : QueryStringInterface
+    public function limit(int $limit): QueryStringInterface
     {
         $this->limit = $limit;
 
         return $this;
     }
 
-
     /**
      * @param int $offset
      *
      * @return $this
      */
-    public function offset( int $offset ) : QueryStringInterface
+    public function offset(int $offset): QueryStringInterface
     {
         $this->offset = $offset;
 
         return $this;
     }
-
 }

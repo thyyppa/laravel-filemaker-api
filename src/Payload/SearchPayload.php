@@ -1,10 +1,11 @@
-<?php namespace Hyyppa\Filemaker\Payload;
+<?php
+
+namespace Hyyppa\Filemaker\Payload;
 
 use Illuminate\Support\Collection;
 
 class SearchPayload extends Payload
 {
-
     /**
      * @var array
      */
@@ -15,69 +16,64 @@ class SearchPayload extends Payload
      */
     protected $sort = [];
 
-
     /**
      * SearchPayload constructor.
      *
      * @param array $query
      * @param array $sort
      */
-    public function __construct( $query = [], $sort = [] )
+    public function __construct($query = [], $sort = [])
     {
-        Collection::__construct( [] );
+        Collection::__construct([]);
 
         $this->query = $query;
-        $this->sort  = $sort;
+        $this->sort = $sort;
     }
-
 
     /**
      * @return string
      */
-    public function toFilemaker() : string
+    public function toFilemaker(): string
     {
         $output = [];
 
-        if( ! empty( $this->query ) ) {
-            $output[ 'query' ] = [ $this->getQuery() ];
+        if (! empty($this->query)) {
+            $output['query'] = [$this->getQuery()];
         }
 
-        if( ! empty( $this->sort ) ) {
-            $output[ 'sort' ] = $this->getSort();
+        if (! empty($this->sort)) {
+            $output['sort'] = $this->getSort();
         }
 
-        return json_encode( $output );
+        return json_encode($output);
     }
-
 
     /**
      * @return array
      */
-    public function getSort() : array
+    public function getSort(): array
     {
         return $this->sort;
     }
-
 
     /**
      * @param array $sort
      *
      * @return Payload
      */
-    public function setSort( array $sort ) : Payload
+    public function setSort(array $sort): Payload
     {
         $this->sort = $sort;
 
         return $this;
     }
 
-
     /**
      * @param $field
      *
      * @return Payload
      */
-    public function sortAscending( $field ) : Payload
+    public function sortAscending($field): Payload
     {
         $this->sort[] = [
             'fieldName' => $field,
@@ -87,13 +83,12 @@ class SearchPayload extends Payload
         return $this;
     }
 
-
     /**
      * @param $field
      *
      * @return Payload
      */
-    public function sortDescending( $field ) : Payload
+    public function sortDescending($field): Payload
     {
         $this->sort[] = [
             'fieldName' => $field,
@@ -103,22 +98,20 @@ class SearchPayload extends Payload
         return $this;
     }
 
-
     /**
      * @return array
      */
-    public function getQuery() : array
+    public function getQuery(): array
     {
         return $this->query;
     }
-
 
     /**
      * @param array $query
      *
      * @return Payload
      */
-    public function setQuery( array $query ) : Payload
+    public function setQuery(array $query): Payload
     {
         $this->query = $query;
 

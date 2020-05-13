@@ -1,12 +1,13 @@
-<?php namespace Hyyppa\Filemaker\Model;
+<?php
 
+namespace Hyyppa\Filemaker\Model;
+
+use Hyyppa\Filemaker\Contracts\FilemakerInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Style\OutputStyle;
-use Hyyppa\Filemaker\Contracts\FilemakerInterface;
 
 class ModelImporter
 {
-
     /**
      * @var FilemakerInterface
      */
@@ -22,36 +23,32 @@ class ModelImporter
      */
     protected $input;
 
-
-    public function __construct( FilemakerInterface $filemaker )
+    public function __construct(FilemakerInterface $filemaker)
     {
         $this->filemaker = $filemaker;
     }
-
 
     /**
      * @param OutputStyle $output
      *
      * @return ModelImporter
      */
-    public function setOutput( OutputStyle $output ) : ModelImporter
+    public function setOutput(OutputStyle $output): self
     {
         $this->output = $output;
 
         return $this;
     }
 
-
     /**
      * @param InputInterface $input
      *
      * @return ModelImporter
      */
-    public function setInput( InputInterface $input ) : ModelImporter
+    public function setInput(InputInterface $input): self
     {
         $this->input = $input;
 
         return $this;
     }
-
 }

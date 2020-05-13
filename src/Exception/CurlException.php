@@ -1,6 +1,7 @@
-<?php namespace Hyyppa\Filemaker\Exception;
+<?php
+
+namespace Hyyppa\Filemaker\Exception;
 
 class CurlException extends \Exception
 {
-
 }

@@ -1,8 +1,9 @@
-<?php namespace Hyyppa\Filemaker\Support;
+<?php
+
+namespace Hyyppa\Filemaker\Support;
 
 class FilemakerLog
 {
-
     /**
      * @var bool
      */
@@ -13,42 +14,35 @@ class FilemakerLog
      */
     protected $counters = [];
 
-
     /**
      * @param array $message
      */
-    public function info( ...$message ) : void
+    public function info(...$message): void
     {
-        if( $this->debugMode ) {
-            dump( $message );
+        if ($this->debugMode) {
+            dump($message);
         }
         //debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2 )
     }
 
-
-    /**
-     *
-     */
-    public function enableDebug() : void
+    public function enableDebug(): void
     {
         $this->debugMode = true;
     }
-
 
     /**
      * @param string $counter
      *
      * @return int
      */
-    public function increment( string $counter ) : int
+    public function increment(string $counter): int
     {
-        if( ! array_key_exists( $counter, $this->counters ) ) {
-            $this->counters[ $counter ] = 0;
+        if (! array_key_exists($counter, $this->counters)) {
+            $this->counters[$counter] = 0;
         }
 
-        return ++$this->counters[ $counter ];
+        return ++$this->counters[$counter];
     }
-
 
     /**
      * @param string $counter
@@ -56,12 +50,12 @@ class FilemakerLog
      *
      * @return string
      */
-    public function getCounter( string $counter, string $label = '' ) : string
+    public function getCounter(string $counter, string $label = ''): string
     {
-        if( '' !== $label ) {
+        if ('' !== $label) {
             $label .= ': ';
         }
 
-        return $label . $this->counters[ $counter ];
+        return $label.$this->counters[$counter];
     }
 }

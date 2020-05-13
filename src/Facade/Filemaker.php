@@ -1,17 +1,16 @@
-<?php namespace Hyyppa\Filemaker\Facade;
+<?php
+
+namespace Hyyppa\Filemaker\Facade;
 
 use Carbon\Carbon;
+use Hyyppa\Filemaker\Contracts\FilemakerInterface;
+use Hyyppa\Filemaker\Contracts\FilemakerModel;
+use Hyyppa\Filemaker\Model\ModelCollection;
+use Hyyppa\Filemaker\Record\RecordCollection;
 use Illuminate\Support\Facades\Facade;
 
-use Hyyppa\Filemaker\{
-    Contracts\FilemakerInterface,
-    Contracts\FilemakerModel,
-    Model\ModelCollection,
-    Record\RecordCollection
-};
-
 /**
- * Class Filemaker
+ * Class Filemaker.
  *
  * @method static RecordCollection      records( string $model, int $limit = 100 )
  * @method static ModelCollection       recordModels( string $model, int $limit = 100 )
@@ -26,17 +25,14 @@ use Hyyppa\Filemaker\{
  * @method static void                  debugMode()
  *
  * @see     \Hyyppa\Filemaker\FilemakerRepository
- * @package Hyyppa\Filemaker\Facade
  */
 class Filemaker extends Facade
 {
-
     /**
      * @return string
      */
-    public static function getFacadeAccessor() : string
+    public static function getFacadeAccessor(): string
     {
         return FilemakerInterface::class;
     }
-
 }

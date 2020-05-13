@@ -1,41 +1,40 @@
-<?php namespace Hyyppa\Filemaker\Connector;
+<?php
 
-use Illuminate\Support\Collection;
+namespace Hyyppa\Filemaker\Connector;
+
 use Hyyppa\Filemaker\Support\Config;
+use Illuminate\Support\Collection;
 
 class Header extends Collection
 {
-
     /**
      * @var Config
      */
     protected $config;
 
-
-    public function __construct( Config $config, string $type = 'application/json' )
+    public function __construct(Config $config, string $type = 'application/json')
     {
         $this->config = $config;
 
-        Collection::__construct( [
+        Collection::__construct([
             $this->authHeader(),
-            'Content-Type: ' . $type,
-        ] );
+            'Content-Type: '.$type,
+        ]);
     }
-
 
     /**
      * @return string
      */
-    protected function authHeader() : string
+    protected function authHeader(): string
     {
-        if( $this->config->token ) {
+        if ($this->config->token) {
             $type = 'Bearer';
             $auth = $this->config->token;
         } else {
             $type = 'Basic';
-            $auth = base64_encode( $this->config->username . ':' . $this->config->password );
+            $auth = base64_encode($this->config->username.':'.$this->config->password);
         }
 
-        return sprintf( 'Authorization: %s %s', $type, $auth );
+        return sprintf('Authorization: %s %s', $type, $auth);
     }
 }

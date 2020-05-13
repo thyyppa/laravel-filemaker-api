@@ -1,4 +1,6 @@
-<?php namespace Hyyppa\Filemaker\Contracts;
+<?php
+
+namespace Hyyppa\Filemaker\Contracts;
 
 use Carbon\Carbon;
 use Hyyppa\Filemaker\Exception\FilemakerException;
@@ -7,15 +9,13 @@ use Hyyppa\Filemaker\Record\RecordCollection;
 
 interface FilemakerInterface
 {
-
     /**
      * @param string $model
      * @param int    $limit
      *
      * @return RecordCollection
      */
-    public function records( string $model, int $limit = 100 ) : RecordCollection;
-
+    public function records(string $model, int $limit = 100): RecordCollection;
 
     /**
      * @param string|FilemakerModel $model
@@ -23,8 +23,7 @@ interface FilemakerInterface
      *
      * @return ModelCollection
      */
-    public function recordModels( string $model, int $limit = 100 ) : ModelCollection;
-
+    public function recordModels(string $model, int $limit = 100): ModelCollection;
 
     /**
      * @param FilemakerModel|string $model
@@ -33,8 +32,7 @@ interface FilemakerInterface
      * @return FilemakerModel|null
      * @throws FilemakerException
      */
-    public function find( $model, $search ) : ?FilemakerModel;
-
+    public function find($model, $search): ?FilemakerModel;
 
     /**
      * @param FilemakerModel|string $model
@@ -43,16 +41,14 @@ interface FilemakerInterface
      * @return array
      * @throws FilemakerException
      */
-    public function query( $model, $search ) : array;
-
+    public function query($model, $search): array;
 
     /**
      * @param FilemakerModel $model
      *
      * @return FilemakerInterface
      */
-    public function save( FilemakerModel $model ) : FilemakerInterface;
-
+    public function save(FilemakerModel $model): self;
 
     /**
      * @param FilemakerModel $model
@@ -61,8 +57,7 @@ interface FilemakerInterface
      * @return bool
      * @throws FilemakerException
      */
-    public function update( FilemakerModel $model, $search ) : bool;
-
+    public function update(FilemakerModel $model, $search): bool;
 
     /**
      * @param FilemakerModel $model
@@ -70,8 +65,7 @@ interface FilemakerInterface
      * @return bool
      * @throws FilemakerException
      */
-    public function needsUpdate( FilemakerModel $model ) : bool;
-
+    public function needsUpdate(FilemakerModel $model): bool;
 
     /**
      * @param string|FilemakerModel $model
@@ -80,8 +74,7 @@ interface FilemakerInterface
      *
      * @return FilemakerModel|null
      */
-    public function latest( $model ) : ?FilemakerModel;
-
+    public function latest($model): ?FilemakerModel;
 
     /**
      * @param $model
@@ -89,8 +82,7 @@ interface FilemakerInterface
      * @return Carbon|null
      * @throws FilemakerException
      */
-    public function lastUpdate( $model ) : ?Carbon;
-
+    public function lastUpdate($model): ?Carbon;
 
     /**
      * @param FilemakerModel $model
@@ -99,8 +91,7 @@ interface FilemakerInterface
      *
      * @throws FilemakerException
      */
-    public function addFileToRecord( FilemakerModel $model, string $field, $filename );
+    public function addFileToRecord(FilemakerModel $model, string $field, $filename);
 
-
-    public function debugMode() : void;
+    public function debugMode(): void;
 }

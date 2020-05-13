@@ -1,8 +1,9 @@
-<?php namespace Hyyppa\Filemaker\Contracts;
+<?php
+
+namespace Hyyppa\Filemaker\Contracts;
 
 interface EloquentInterface
 {
-
     /**
      * Fill the model with an array of attributes.
      *
@@ -12,8 +13,7 @@ interface EloquentInterface
      *
      * @throws \Illuminate\Database\Eloquent\MassAssignmentException
      */
-    public function fill( array $attributes );
-
+    public function fill(array $attributes);
 
     /**
      * Fill the model with an array of attributes. Force mass assignment.
@@ -22,8 +22,7 @@ interface EloquentInterface
      *
      * @return $this
      */
-    public function forceFill( array $attributes );
-
+    public function forceFill(array $attributes);
 
     /**
      * Qualify the given column name by the model's table.
@@ -32,8 +31,7 @@ interface EloquentInterface
      *
      * @return string
      */
-    public function qualifyColumn( $column );
-
+    public function qualifyColumn($column);
 
     /**
      * Create a new instance of the given model.
@@ -43,8 +41,7 @@ interface EloquentInterface
      *
      * @return static
      */
-    public function newInstance( $attributes = [], $exists = false );
-
+    public function newInstance($attributes = [], $exists = false);
 
     /**
      * Create a new model instance that is existing.
@@ -54,8 +51,7 @@ interface EloquentInterface
      *
      * @return static
      */
-    public function newFromBuilder( $attributes = [], $connection = null );
-
+    public function newFromBuilder($attributes = [], $connection = null);
 
     /**
      * Eager load relations on the model.
@@ -64,8 +60,7 @@ interface EloquentInterface
      *
      * @return $this
      */
-    public function load( $relations );
-
+    public function load($relations);
 
     /**
      * Eager load relations on the model if they are not already eager loaded.
@@ -74,8 +69,7 @@ interface EloquentInterface
      *
      * @return $this
      */
-    public function loadMissing( $relations );
-
+    public function loadMissing($relations);
 
     /**
      * Update the model in the database.
@@ -85,8 +79,7 @@ interface EloquentInterface
      *
      * @return bool
      */
-    public function update( array $attributes = [], array $options = [] );
-
+    public function update(array $attributes = [], array $options = []);
 
     /**
      * Save the model and all of its relationships.
@@ -95,7 +88,6 @@ interface EloquentInterface
      */
     public function push();
 
-
     /**
      * Save the model to the database.
      *
@@ -103,8 +95,7 @@ interface EloquentInterface
      *
      * @return bool
      */
-    public function save( array $options = [] );
-
+    public function save(array $options = []);
 
     /**
      * Save the model to the database using transaction.
@@ -115,8 +106,7 @@ interface EloquentInterface
      *
      * @throws \Throwable
      */
-    public function saveOrFail( array $options = [] );
-
+    public function saveOrFail(array $options = []);
 
     /**
      * Delete the model from the database.
@@ -127,7 +117,6 @@ interface EloquentInterface
      */
     public function delete();
 
-
     /**
      * Force a hard delete on a soft deleted model.
      *
@@ -137,14 +126,12 @@ interface EloquentInterface
      */
     public function forceDelete();
 
-
     /**
      * Get a new query builder for the model's table.
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function newQuery();
-
 
     /**
      * Get a new query builder that doesn't have any global scopes or eager loading.
@@ -153,14 +140,12 @@ interface EloquentInterface
      */
     public function newModelQuery();
 
-
     /**
      * Get a new query builder with no relationships loaded.
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function newQueryWithoutRelationships();
-
 
     /**
      * Register the global scopes for this builder instance.
@@ -169,8 +154,7 @@ interface EloquentInterface
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function registerGlobalScopes( $builder );
-
+    public function registerGlobalScopes($builder);
 
     /**
      * Get a new query builder that doesn't have any global scopes.
@@ -179,7 +163,6 @@ interface EloquentInterface
      */
     public function newQueryWithoutScopes();
 
-
     /**
      * Get a new query instance without a given scope.
      *
@@ -187,8 +170,7 @@ interface EloquentInterface
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function newQueryWithoutScope( $scope );
-
+    public function newQueryWithoutScope($scope);
 
     /**
      * Get a new query to restore one or more models by their queueable IDs.
@@ -197,8 +179,7 @@ interface EloquentInterface
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function newQueryForRestoration( $ids );
-
+    public function newQueryForRestoration($ids);
 
     /**
      * Create a new Eloquent query builder for the model.
@@ -207,8 +188,7 @@ interface EloquentInterface
      *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
-    public function newEloquentBuilder( $query );
-
+    public function newEloquentBuilder($query);
 
     /**
      * Create a new Eloquent Collection instance.
@@ -217,8 +197,7 @@ interface EloquentInterface
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function newCollection( array $models = [] );
-
+    public function newCollection(array $models = []);
 
     /**
      * Create a new pivot model instance.
@@ -231,8 +210,7 @@ interface EloquentInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\Pivot
      */
-    public function newPivot( \Illuminate\Database\Eloquent\Model $parent, array $attributes, $table, $exists, $using = null );
-
+    public function newPivot(\Illuminate\Database\Eloquent\Model $parent, array $attributes, $table, $exists, $using = null);
 
     /**
      * Convert the model instance to an array.
@@ -240,7 +218,6 @@ interface EloquentInterface
      * @return array
      */
     public function toArray();
-
 
     /**
      * Convert the model instance to JSON.
@@ -251,8 +228,7 @@ interface EloquentInterface
      *
      * @throws \Illuminate\Database\Eloquent\JsonEncodingException
      */
-    public function toJson( $options = 0 );
-
+    public function toJson($options = 0);
 
     /**
      * Convert the object into something JSON serializable.
@@ -261,7 +237,6 @@ interface EloquentInterface
      */
     public function jsonSerialize();
 
-
     /**
      * Reload a fresh model instance from the database.
      *
@@ -269,8 +244,7 @@ interface EloquentInterface
      *
      * @return static|null
      */
-    public function fresh( $with = [] );
-
+    public function fresh($with = []);
 
     /**
      * Reload the current model instance with fresh attributes from the database.
@@ -279,7 +253,6 @@ interface EloquentInterface
      */
     public function refresh();
 
-
     /**
      * Clone the model into a new, non-existing instance.
      *
@@ -287,8 +260,7 @@ interface EloquentInterface
      *
      * @return static
      */
-    public function replicate( array $except = null );
-
+    public function replicate(array $except = null);
 
     /**
      * Determine if two models have the same ID and belong to the same table.
@@ -297,8 +269,7 @@ interface EloquentInterface
      *
      * @return bool
      */
-    public function is( $model );
-
+    public function is($model);
 
     /**
      * Determine if two models are not the same.
@@ -307,8 +278,7 @@ interface EloquentInterface
      *
      * @return bool
      */
-    public function isNot( $model );
-
+    public function isNot($model);
 
     /**
      * Get the database connection for the model.
@@ -317,14 +287,12 @@ interface EloquentInterface
      */
     public function getConnection();
 
-
     /**
      * Get the current connection name for the model.
      *
      * @return string
      */
     public function getConnectionName();
-
 
     /**
      * Set the connection associated with the model.
@@ -333,8 +301,7 @@ interface EloquentInterface
      *
      * @return $this
      */
-    public function setConnection( $name );
-
+    public function setConnection($name);
 
     /**
      * Get the table associated with the model.
@@ -343,7 +310,6 @@ interface EloquentInterface
      */
     public function getTable();
 
-
     /**
      * Set the table associated with the model.
      *
@@ -351,8 +317,7 @@ interface EloquentInterface
      *
      * @return $this
      */
-    public function setTable( $table );
-
+    public function setTable($table);
 
     /**
      * Get the primary key for the model.
@@ -361,7 +326,6 @@ interface EloquentInterface
      */
     public function getKeyName();
 
-
     /**
      * Set the primary key for the model.
      *
@@ -369,8 +333,7 @@ interface EloquentInterface
      *
      * @return $this
      */
-    public function setKeyName( $key );
-
+    public function setKeyName($key);
 
     /**
      * Get the table qualified key name.
@@ -379,14 +342,12 @@ interface EloquentInterface
      */
     public function getQualifiedKeyName();
 
-
     /**
      * Get the auto-incrementing key type.
      *
      * @return string
      */
     public function getKeyType();
-
 
     /**
      * Set the data type for the primary key.
@@ -395,8 +356,7 @@ interface EloquentInterface
      *
      * @return $this
      */
-    public function setKeyType( $type );
-
+    public function setKeyType($type);
 
     /**
      * Get the value indicating whether the IDs are incrementing.
@@ -405,7 +365,6 @@ interface EloquentInterface
      */
     public function getIncrementing();
 
-
     /**
      * Set whether IDs are incrementing.
      *
@@ -413,8 +372,7 @@ interface EloquentInterface
      *
      * @return $this
      */
-    public function setIncrementing( $value );
-
+    public function setIncrementing($value);
 
     /**
      * Get the value of the model's primary key.
@@ -423,14 +381,12 @@ interface EloquentInterface
      */
     public function getKey();
 
-
     /**
      * Get the queueable identity for the entity.
      *
      * @return mixed
      */
     public function getQueueableId();
-
 
     /**
      * Get the queueable relationships for the entity.
@@ -439,14 +395,12 @@ interface EloquentInterface
      */
     public function getQueueableRelations();
 
-
     /**
      * Get the queueable connection for the entity.
      *
      * @return mixed
      */
     public function getQueueableConnection();
-
 
     /**
      * Get the value of the model's route key.
@@ -455,14 +409,12 @@ interface EloquentInterface
      */
     public function getRouteKey();
 
-
     /**
      * Get the route key for the model.
      *
      * @return string
      */
     public function getRouteKeyName();
-
 
     /**
      * Retrieve the model for a bound value.
@@ -471,8 +423,7 @@ interface EloquentInterface
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function resolveRouteBinding( $value );
-
+    public function resolveRouteBinding($value);
 
     /**
      * Get the default foreign key name for the model.
@@ -481,14 +432,12 @@ interface EloquentInterface
      */
     public function getForeignKey();
 
-
     /**
      * Get the number of models to return per page.
      *
      * @return int
      */
     public function getPerPage();
-
 
     /**
      * Set the number of models to return per page.
@@ -497,8 +446,7 @@ interface EloquentInterface
      *
      * @return $this
      */
-    public function setPerPage( $perPage );
-
+    public function setPerPage($perPage);
 
     /**
      * Determine if the given attribute exists.
@@ -507,8 +455,7 @@ interface EloquentInterface
      *
      * @return bool
      */
-    public function offsetExists( $offset );
-
+    public function offsetExists($offset);
 
     /**
      * Get the value for a given offset.
@@ -517,8 +464,7 @@ interface EloquentInterface
      *
      * @return mixed
      */
-    public function offsetGet( $offset );
-
+    public function offsetGet($offset);
 
     /**
      * Set the value for a given offset.
@@ -528,8 +474,7 @@ interface EloquentInterface
      *
      * @return void
      */
-    public function offsetSet( $offset, $value );
-
+    public function offsetSet($offset, $value);
 
     /**
      * Unset the value for a given offset.
@@ -538,5 +483,5 @@ interface EloquentInterface
      *
      * @return void
      */
-    public function offsetUnset( $offset );
+    public function offsetUnset($offset);
 }
